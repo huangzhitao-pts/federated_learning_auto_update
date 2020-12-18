@@ -1,0 +1,24 @@
+services:
+  autoUpdate:
+    entrypoint:
+    - bash
+    - entrypoint.sh
+    environment:
+    - PYTHONUNBUFFERED=1
+    - IMAGE_PREFIX=registry.cn-shanghai.aliyuncs.com/deployment_test/
+    - DEFAULT_IMAGE_TAG=stable
+    - LOCAL_HOST=192.168.89.178
+    - LOCAL_RUN_PWD=${PWD}
+    image: registry.cn-shanghai.aliyuncs.com/deployment_test/auto_update
+    ports:
+    - 3100:5000
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ~/.ssh:/root/.ssh
+    - ./mnt:/mnt
+  test_python:
+    entrypoint:
+    - sleep
+    - '10000000000'
+    image: registry.cn-shanghai.aliyuncs.com/deployment_test/python:beta
+version: '3'
