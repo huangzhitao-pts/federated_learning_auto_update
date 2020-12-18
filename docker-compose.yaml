@@ -1,6 +1,7 @@
 version: "3"
 services:
   autoUpdate:
+    container_name: auto_update
     image: registry.cn-shanghai.aliyuncs.com/deployment_test/auto_update
     entrypoint: ["bash", "entrypoint.sh"]
     ports:
@@ -16,5 +17,6 @@ services:
       - LOCAL_HOST=192.168.89.178
       - LOCAL_RUN_PWD=${PWD}
   test_python:
+    container_name: test_python
     image: registry.cn-shanghai.aliyuncs.com/deployment_test/python:stable
     entrypoint: ["sleep", "10000000000"]
